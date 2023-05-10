@@ -1,0 +1,135 @@
+{%extends "vidpic/base.html"%}
+{%load static%}
+
+{%block content%}
+
+
+{%include "vidpic/navbar.html"%}
+<hr>
+<!-- <img src= alt ='just another image' width=" 350" height="350"> -->
+
+<section id="mybanner">
+<div class="container-fluid position-relative">
+  <img src="{% static 'vidpic/kushagra-kevat-9ESAufvpgjI-unsplash.jpg' %}" alt="banner" class="img-fluid" style="object-fit: cover; height: 600px; width: 100%;">
+  <div class="position-absolute top-50 start-50 translate-middle text-center">
+  	<h3 style="color: ghostwhite;">Remember Every Day is a Memory <br>Worthy Documenting</h3>
+    <a href="/aboutus/">
+      <button type="button" class="btn btn-primary" style="font-size: 1.5rem;">
+        LEARN MORE &plus;
+        <span class="visually-hidden">&amp;</span>
+      </button>
+    </a>
+  </div>
+</div>
+
+
+<br><br>
+
+
+</section>
+
+<!-- videos section -->
+
+
+<section id="videosection_1">
+<div class="container-fluid">
+<div class="row">
+  {% for video in videos %}
+    <div class="col-md-4 mb-3">
+      <div class="card h-100">
+        <a href="/detail/{{video.id}}"><video class="card-img-top" src="{{ video.vid.url }}" controls></video></a>
+        <div class="card-body">
+          <h5 class="card-title">{{ video.title }}</h5>
+          <p class="card-text">{{ video.description }}</p>
+          <p>{{video.video_likes.count}} likes</p>
+
+          <!-- liking and likes functionality below  -->
+            <!--     {% if request.user.is_authenticated %}
+                if is executed
+              <form method="POST" action="{% url 'like_video' video.id %}">
+              {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Like</button>
+               </form>
+                {% endif %} -->
+
+
+
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>	
+</div>
+</section>
+
+<!-- pictures carousel -->
+<section id="picture_carousel">
+	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    {%for picture in pictures %}
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></button>
+    {% endfor %}
+  </div>
+
+  <div class="carousel-inner">
+   {%for picture in pictures %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+        <img src="{{ picture.img.url }}" class="d-block w-100" alt="{{ picture.title }}">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{ picture.title }}</h5>
+          <p>{{ picture.description }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<br><br>
+
+<div class="row">
+    {% for media in mixed_media %}
+    {%if media.vid%}
+    <div class="col-sm-6 col-md-4">
+      <div class="card">
+        <!-- <img src="{{ media.vid.url }}" class="card-img-top" alt="{{ vid.title }}"> -->
+        <video src="{{ media.vid.url }}" class="card-img-top" alt="{{ media.title }}" controls></video>
+        <div class="card-body">
+          <h5 class="card-title">{{ media.title }}</h5>
+          <p class="card-text">{{ media.description }}</p>
+        </div>
+      </div>
+    </div>
+    {%else %}
+    <div class="col-sm-6 col-md-4">
+      <div class="card">
+        <img src="{{ media.img.url }}" class="card-img-top" alt="{{ img.title }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ media.title }}</h5>
+          <p class="card-text">{{ media.description }}</p>
+        </div>
+      </div>
+    </div>
+
+    {%endif%}
+  {% endfor %}
+</div>
+</section>
+<br><br>
+
+ {%include "vidpic/footer.html"%}
+
+
+
+
+
+
+{%endblock%}

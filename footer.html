@@ -1,0 +1,58 @@
+{%extends "vidpic/base.html"%}
+{%block content%}
+{%load static%} #activates static folder
+<footer id="myfooter" style="background-color: lightgrey;">
+	<div class="container-fluid" style="padding-top: 30px;">
+		<div class="row">
+			<div class="col-md-3"><a class="navbar-brand" href="/home"><img src="{% static 'vidpic/v.png'%}" width="150" height="150"></a><br>
+				<strong>VIDPIC</strong>
+				<small>Designed by DerbyMatoma&#169; 2023<br></small>
+				<small>All rights reserved DMAT GROUP, INC,PVT</small>
+
+
+			</div>
+			<div class="col-md-3">
+				<ul style="list-style-type: none;">
+					<strong>Guides</strong>
+					<small>
+					<li>Uploading</li>
+					<li> Art</li>
+					<li>Love</li>
+					<li>Video</li>
+					<li>Fun</li>
+				</small>
+
+				</ul>
+			</div>
+			<div class="col-md-3">
+				<ul style="list-style-type: none;">
+					<strong>Work</strong>
+					<small>
+					<li>Videography</li>
+					<li> Play</li>
+					<li> School</li>
+					<li>Join Us</li>
+				</small>
+				</ul>
+			</div>
+			<div class="col-md-3">
+				
+				<ul style="list-style-type: none;">
+					<strong>Community</strong>
+					<small>
+					<li>Issues</li>
+					<li>Reports</li>
+					<li> Moderation</li>
+					<li>GroupChats</li>
+				</small>
+				</ul>
+				
+			</div>
+			
+		</div>
+	</div>
+	
+</footer>
+
+
+{%endblock%}

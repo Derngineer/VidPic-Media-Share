@@ -1,0 +1,32 @@
+{%extends "vidpic/base.html"%}
+{%load static%}
+
+{%block content%}
+{%include "vidpic/navbar.html"%}
+
+{%if video%}
+<div class="card">
+  <div class="card-body">
+    <video class="card-img-top mx-auto d-block" src="{{ video.vid.url }}" controls width="1920" height="1080"></video>
+    <br>
+    <h5 class="card-title">{{ video.title }}</h5>
+    <p class="card-text">{{ video.description }}</p>
+    <p>{{video.video_likes.count}} likes</p>
+    <hr>
+
+    <!-- liking and likes functionality below  -->
+    {% if request.user.is_authenticated %}
+     <form method="POST" action="{% url 'like_video' video.id %}">
+    {% csrf_token %}
+    <a href="#" class="btn btn-primary">
+      <i class="far fa-heart"></i>
+    </a>
+  </form>
+    {% endif %}
+  </div>
+</div>
+
+
+
+{%endif%}
+{%endblock%}

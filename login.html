@@ -1,0 +1,29 @@
+{%extends "vidpic/base.html"%}
+{%block content%}
+{%include "vidpic/navbar.html"%}
+
+<!-- {%load crispy_forms_tags%} -->
+<!-- sign in?\ -->
+<div class="container py-5">
+	<div class="row justify-content-center">
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-header bg-primary text-white">
+					<h1 class="text-center mb-0">Login</h1>
+				</div>
+				<div class="card-body">
+					<form method="POST">
+						{% csrf_token %}
+						{{form.as_p}}
+						<button class="btn btn-primary" type ="submit"> Login </button>
+					</form>
+					<p class="text-center mt-4 mb-0">Don't have an account? <a href="/signup">Register here</a>.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{%endblock%}
+
